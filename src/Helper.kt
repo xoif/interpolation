@@ -6,6 +6,7 @@ import java.awt.Image
 import java.awt.image.BufferedImage
 import java.awt.image.WritableRaster
 import java.util.*
+import javax.swing.JComponent
 import javax.swing.JPanel
 
 /**
@@ -14,7 +15,8 @@ import javax.swing.JPanel
 
 fun generateRandomPixel(): Pixel {
     val random = Random()
-    return Pixel(random.nextInt(256),random.nextInt(256),random.nextInt(256))
+ //   return Pixel(random.nextInt(256),random.nextInt(256),random.nextInt(256))
+    return Pixel(255,0,0)
 }
 
 fun getImageFromArray(pixels: Array<Array<Pixel>>): Image {
@@ -31,11 +33,11 @@ fun getImageFromArray(pixels: Array<Array<Pixel>>): Image {
     return image
 }
 
-class ImagePresenter(val image: Image): JPanel() {
+class ImagePresenter(val image: Image): JComponent() {
 
-    override fun paintComponent(g: Graphics?) {
-        super.paintComponent(g)
-        g!!.drawImage(image, 0,0, width, height, null)
+    override fun paint(g: Graphics?) {
+        g!!.drawImage(image, 10,10, width-20, height-20, null)
     }
+
     override fun getPreferredSize(): Dimension = Dimension(1000, 1000)
 }

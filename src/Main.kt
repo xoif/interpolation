@@ -11,7 +11,7 @@ import javax.swing.JFrame
 
 fun main(args : Array<String>) {
 
-    val f = JFrame("Load Image Sample")
+    val f = JFrame("Interpolation")
 
     f.addWindowListener(object : WindowAdapter() {
         override fun windowClosing(e: WindowEvent?) {
