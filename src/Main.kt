@@ -18,8 +18,8 @@ fun main(args : Array<String>) {
             System.exit(0)
         }
     })
- //   val pixelGrid = Array(8){ Array(8) { generateRandomPixel()} }
-    val pixelGrid = PixelGrid(generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), 128, 128)
+
+    val pixelGrid = PixelGrid(generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), 8, 8 )
 
     val image = getImageFromArray(pixelGrid.interpolatedColorGrid)
 
@@ -63,7 +63,16 @@ data class PixelGrid(val topLeftA: Pixel, val topRightB: Pixel, val bottomLeftC:
     }
 
     fun interpolatePixelColor(a: Int, b: Int, c: Int, d: Int, x: Int, y: Int): Int {
-        return ((width - x) * (height - y) * a + x * (height -y) * b + (width - x) * y * c + x * y * d + (2* (width + height)) / (width * height))
+        /* formula from sheets
+        ( (8 – xFracC ) * ( 8 – yFracC ) * A +
+        xFracC * ( 8 – yFracC ) * B +
+        ( 8 – xFracC ) * yFracC * C +
+        xFracC * yFracC * D + 32 ) / 64
+         */
+        return ((width - x) * (height - y) * a +
+                x * (height -y) * b +
+                (width - x) * y * c +
+                x * y * d + 2* (width + height) ) / (width * height)
     }
 }
 
