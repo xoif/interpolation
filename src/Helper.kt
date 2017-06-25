@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage
 import java.awt.image.WritableRaster
 import java.util.*
 import javax.swing.JComponent
-import javax.swing.JPanel
 
 /**
  * Created by Rolf on 24.06.2017.
@@ -15,8 +14,7 @@ import javax.swing.JPanel
 
 fun generateRandomPixel(): Pixel {
     val random = Random()
- //   return Pixel(random.nextInt(256),random.nextInt(256),random.nextInt(256))
-    return Pixel(255,0,0)
+    return Pixel(random.nextInt(256),random.nextInt(256),random.nextInt(256))
 }
 
 fun getImageFromArray(pixels: Array<Array<Pixel>>): Image {
@@ -24,12 +22,13 @@ fun getImageFromArray(pixels: Array<Array<Pixel>>): Image {
     val height = pixels[0].size
 
     var imageFlatMap = pixels.flatMap { it.flatMap { it.toIntArray().map { it } } }
-    print(imageFlatMap)
+    print("pixelcount: ${imageFlatMap.size}")
 
     val image = BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
     val raster = image.data as WritableRaster
 
     raster.setPixels(0, 0, width, height, imageFlatMap.toIntArray())
+    image.data = raster
     return image
 }
 
