@@ -17,11 +17,11 @@ fun generateRandomPixel(): Pixel {
     return Pixel(random.nextInt(256),random.nextInt(256),random.nextInt(256))
 }
 
-fun getImageFromArray(pixels: Array<Array<Pixel>>): Image {
+fun getImageFromArray(pixels: Array<Array<Pixel?>?>): Image {
     val width = pixels.size
-    val height = pixels[0].size
+    val height = pixels[0]!!.size
 
-    var imageFlatMap = pixels.flatMap { it.flatMap { it.toIntArray().map { it } } }
+    var imageFlatMap = pixels.flatMap { it!!.flatMap { it!!.toIntArray().map { it } } }
     print("pixelcount: ${imageFlatMap.size}")
 
     val image = BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
