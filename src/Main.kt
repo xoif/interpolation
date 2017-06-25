@@ -19,7 +19,8 @@ fun main(args : Array<String>) {
         }
     })
 
-    val pixelGrid = PixelGrid(generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), 8, 8 )
+    val pixelGrid = PixelGrid(generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), generateRandomPixel(), 8, 8)
+    //val pixelGrid = PixelGrid(Pixel(0,0,0), Pixel(255,255,255), generateRandomPixel(), generateRandomPixel(), 512, 512)
 
     val image = getImageFromArray(pixelGrid.interpolatedColorGrid)
 
